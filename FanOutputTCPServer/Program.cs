@@ -58,7 +58,7 @@ namespace FanOutputTCPServer
                         StreamWriter sw = new StreamWriter(ns);
                         sw.AutoFlush = true;
                         var message = sr.ReadLine();
-                        switch (message)
+                        switch (message.ToUpper())
                         {
                             case "HENT":
                                 int n;

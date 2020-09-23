@@ -49,6 +49,7 @@ namespace FanOutputTCPClient
                         case "GEM":
                             Console.WriteLine("Indtast i følgende format: Id, Name, Temperature, Humidity");
                             string stringObject = Console.ReadLine();
+                            sw.WriteLine(method);
                             sw.WriteLine(stringObject);
                             break;
 
