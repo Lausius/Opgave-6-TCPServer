@@ -70,6 +70,7 @@ namespace FanOutputTCPServer
                                     {
                                         string fanOutputItemJson = JsonConvert.SerializeObject(fanOutputItem);
                                         sw.WriteLine(fanOutputItemJson);
+                                        break;
                                     }
                                     else
                                     {
@@ -84,6 +85,12 @@ namespace FanOutputTCPServer
                             case "HENTALLE":
                                 string fanOutputJsonString = JsonConvert.SerializeObject(fanOutputReadings);
                                 sw.WriteLine(fanOutputJsonString);
+                                break;
+
+                            case "GEM":
+                                var stringObject = sr.ReadLine();
+                                var words = stringObject.Split(" ");
+                                fanOutputReadings.Add(new FanOutput(Int32.Parse(words[0]), words[1], Convert.ToDouble(words[2]), Convert.ToDouble(words[3])));
                                 break;
 
                             default:
