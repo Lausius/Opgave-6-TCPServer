@@ -27,14 +27,14 @@ namespace FanOutputTCPClient
                 sw.AutoFlush = true;
                 while (true)
                 {
-                    Console.WriteLine("Vælg en af følgende valgmuligheder: 'Hent' 'HentAlle' og 'Gem'");
+                    Console.WriteLine(sr.ReadLine());
                     string method = Console.ReadLine();
                     switch (method.ToUpper())
                     {
                         case "HENT":
-                            Console.WriteLine("Hvilket element/ID vil du hente?");
-                            string id = Console.ReadLine();
                             sw.WriteLine(method.ToUpper());
+                            Console.WriteLine(sr.ReadLine());
+                            string id = Console.ReadLine();
                             sw.WriteLine(id);
                             string receievedJsonString = sr.ReadLine();
                             Console.WriteLine(receievedJsonString);
@@ -47,10 +47,11 @@ namespace FanOutputTCPClient
                             break;
 
                         case "GEM":
-                            Console.WriteLine("Indtast i følgende format: Id, Name, Temperature, Humidity");
-                            string stringObject = Console.ReadLine();
                             sw.WriteLine(method);
+                            Console.WriteLine(sr.ReadLine());
+                            string stringObject = Console.ReadLine();
                             sw.WriteLine(stringObject);
+                            Console.WriteLine(sr.ReadLine());
                             break;
 
                         default:

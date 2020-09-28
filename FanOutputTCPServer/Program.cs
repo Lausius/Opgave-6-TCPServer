@@ -57,10 +57,12 @@ namespace FanOutputTCPServer
                         StreamReader sr = new StreamReader(ns);
                         StreamWriter sw = new StreamWriter(ns);
                         sw.AutoFlush = true;
+                        sw.WriteLine("Vælg en af følgende valgmuligheder: 'Hent' 'HentAlle' og 'Gem'");
                         var message = sr.ReadLine();
                         switch (message.ToUpper())
                         {
                             case "HENT":
+                                sw.WriteLine("Hvilket element/ID vil du hente?");
                                 int n;
                                 var id = sr.ReadLine();
                                 if (int.TryParse(id, out n))
@@ -79,7 +81,7 @@ namespace FanOutputTCPServer
                                     }
                                 }
 
-                                sw.WriteLine("ID skal være af typen 'int'");
+                                sw.WriteLine("ID skal være et tal");
                                 break;
 
                             case "HENTALLE":
@@ -88,10 +90,21 @@ namespace FanOutputTCPServer
                                 break;
 
                             case "GEM":
+                                sw.WriteLine("Indtast i følgende format: Id, Name, Temperature (15-25), Humidity (30-80");
                                 var stringObject = sr.ReadLine();
                                 var words = stringObject.Split(" ");
-                                fanOutputReadings.Add(new FanOutput(Int32.Parse(words[0]), words[1], Convert.ToDouble(words[2]), Convert.ToDouble(words[3])));
-                                break;
+                                try
+                                {
+                                    fanOutputReadings.Add(new FanOutput(Int32.Parse(words[0]), words[1], Convert.ToDouble(words[2]), Convert.ToDouble(words[3])));
+                                    sw.WriteLine("Gemt");
+                                    break;
+
+                                }
+                                catch (Exception)
+                                {
+                                    sw.WriteLine("Forkert input");
+                                    break;
+                                }
 
                             default:
                                 break;
