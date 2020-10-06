@@ -55,6 +55,7 @@ namespace FanOutputTCPClient
                             break;
 
                         default:
+                            sw.WriteLine($"'{method}' er ikke en gyldig metode");
                             break;
                     }
                 }
